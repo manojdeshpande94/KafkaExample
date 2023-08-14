@@ -10,14 +10,13 @@ import org.springframework.kafka.core.KafkaAdmin;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.kafkaexample.util.Constants.KAFKA_TOPIC;
+
 @Configuration
 public class KafkaTopicConfig {
 
     @Value(value = "${kafka.server.address}")
     private String bootstrapServerAddress;
-
-    @Value(value = "${kafka.topic.ballu}")
-    private String kafkaGamesTopic;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -27,8 +26,8 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic gamesTopic() {
-        return new NewTopic(kafkaGamesTopic, 1, (short) 1);
+    public NewTopic kafkaTopicInit() {
+        return new NewTopic(KAFKA_TOPIC, 1, (short) 1);
     }
 
 }
